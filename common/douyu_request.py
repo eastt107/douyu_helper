@@ -7,7 +7,7 @@ from common.get_secrets import get_secrets
 class DYHTTPRequests:
 
     def __init__(self):
-        self.cookie = get_secrets('COOKIES')
+        self.cookie = get_secrets('COOKIES').replace('\n', '').replace('\r', '').strip()
         self.session = session()
         self.header = {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -15,8 +15,6 @@ class DYHTTPRequests:
             "referer": "https://www.douyu.com",
             "Cookie": self.cookie
         }
-        self.cookie = get_secrets('COOKIES').replace('\n', '').replace('\r', '').strip()
-
     def request(self, method, path, **kwargs):
         url = "https://www.douyu.com" + path
         method.upper()
