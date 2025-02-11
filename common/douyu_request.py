@@ -15,7 +15,7 @@ class DYHTTPRequests:
             "referer": "https://www.douyu.com",
             "Cookie": self.cookie
         }
-        self.cookie = get_secrets('COOKIES').replace('\n', '').strip()
+        self.cookie = get_secrets('COOKIES').replace('\n', '').replace('\r', '').strip()
 
     def request(self, method, path, **kwargs):
         url = "https://www.douyu.com" + path
